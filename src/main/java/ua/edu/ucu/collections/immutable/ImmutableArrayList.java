@@ -64,6 +64,7 @@ public final class ImmutableArrayList implements ImmutableList {
     public ImmutableList set(int index, Object e) {
         checkIndex(index);
         Object[] newContainer = new Object[size];
+        System.arraycopy(container, 0, newContainer, 0, size);
         newContainer[index] = e;
         return new ImmutableArrayList(newContainer);
     }
@@ -101,6 +102,9 @@ public final class ImmutableArrayList implements ImmutableList {
         return arr;
     }
 
+    /*
+    Additional methods
+     */
     private void checkIndex(int index){
         if (index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
