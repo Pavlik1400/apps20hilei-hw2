@@ -1,6 +1,9 @@
 package ua.edu.ucu.collections.immutable;
 
 import org.junit.Test;
+
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class ImmutableLinkedListTest {
@@ -372,6 +375,116 @@ public class ImmutableLinkedListTest {
 
         list = new ImmutableLinkedList(new Object[]{1, 2, 3});
         assertArrayEquals(list.toArray(), new Object[]{1, 2, 3});
+    }
+
+    @Test
+    public void testAddFirst() {
+        // empty
+        ImmutableLinkedList list = new ImmutableLinkedList();
+
+        // immutability
+        list.addFirst(12);
+        assertEquals(list.size(), 0);
+        assertArrayEquals(list.toArray(), new Object[]{});
+
+
+        list = list.addFirst(12);
+        assertEquals(list.size(), 1);
+        assertArrayEquals(list.toArray(), new Object[]{12});
+
+        // not empty
+        list = list.addFirst(13);
+        assertEquals(list.size(), 2);
+        assertArrayEquals(list.toArray(), new Object[]{13, 12});
+    }
+
+    @Test
+    public void testAddLast() {
+        // empty
+        ImmutableLinkedList list = new ImmutableLinkedList();
+
+        // immutability
+        list.addLast(12);
+        assertEquals(list.size(), 0);
+        assertArrayEquals(list.toArray(), new Object[]{});
+
+
+        list = list.addLast(12);
+        assertEquals(list.size(), 1);
+        assertArrayEquals(list.toArray(), new Object[]{12});
+
+        // not empty
+        list = list.addLast(13);
+        assertEquals(list.size(), 2);
+        assertArrayEquals(list.toArray(), new Object[]{12, 13});
+    }
+
+    @Test
+    public void testGetFirst() {
+        ImmutableLinkedList list = new ImmutableLinkedList(new Object[]{1, 2, 3, -4});
+        assertEquals(list.getFirst(), 1);
+        list = list.addFirst(99);
+        assertEquals(list.getFirst(), 99);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetFirstEmpty() {
+        ImmutableLinkedList list = new ImmutableLinkedList();
+        list.getFirst();
+    }
+
+    @Test
+    public void testGetLast() {
+        ImmutableLinkedList list = new ImmutableLinkedList(new Object[]{1, 2, 3, -4});
+        assertEquals(list.getLast(), -4);
+        list = list.addLast(-5);
+        assertEquals(list.getLast(), -5);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetLastEmpty() {
+        ImmutableLinkedList list = new ImmutableLinkedList();
+        list.getLast();
+    }
+
+    @Test
+    public void testRemoveFirst() {
+        ImmutableLinkedList list = new ImmutableLinkedList(new Object[]{1, 2, 3, -4});
+        // immutability
+        list.removeFirst();
+        assertEquals(list.size(), 4);
+        assertArrayEquals(list.toArray(), new Object[]{1, 2, 3, -4});
+
+        list = list.removeFirst();
+        assertEquals(list.size(), 3);
+        assertArrayEquals(list.toArray(), new Object[]{2, 3, -4});
+
+        list = list.removeFirst();
+        assertEquals(list.size(), 2);
+        assertArrayEquals(list.toArray(), new Object[]{3, -4});
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testRemoveFirstEmpty() {
+        ImmutableLinkedList list = new ImmutableLinkedList();
+        list.removeFirst();
+    }
+
+    @Test
+    public void testRemoveLast() {
+        ImmutableLinkedList list = new ImmutableLinkedList(new Object[]{1, 2, 3, -4});
+        // immutability
+        list.removeLast();
+        assertEquals(list.size(), 4);
+        assertArrayEquals(list.toArray(), new Object[]{1, 2, 3, -4});
+
+        list = list.removeLast();
+        assertEquals(list.size(), 3);
+        assertArrayEquals(list.toArray(), new Object[]{1, 2, 3});
+
+        list = list.removeLast();
+        assertEquals(list.size(), 2);
+        assertArrayEquals(list.toArray(), new Object[]{1, 2});
     }
 
 }

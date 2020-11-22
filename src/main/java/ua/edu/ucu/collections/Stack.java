@@ -25,7 +25,7 @@ public class Stack {
         container = container.addLast(obj);
     }
 
-    public Object pop(Object obj){
+    public Object pop(){
         Object last = container.getLast();
         container = container.removeLast();
         return last;

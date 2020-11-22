@@ -30,7 +30,7 @@ public class Queue {
         container = container.addLast(obj);
     }
 
-    public Object dequeue(Object obj){
+    public Object dequeue(){
         Object first = container.getFirst();
         container = container.removeFirst();
         return first;

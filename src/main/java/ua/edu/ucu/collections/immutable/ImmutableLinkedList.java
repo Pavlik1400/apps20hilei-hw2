@@ -176,7 +176,7 @@ public final class ImmutableLinkedList implements ImmutableList{
     }
 
     public Object getLast() {
-        return get(size);
+        return get(size-1);
     }
 
     public ImmutableLinkedList removeFirst() {
