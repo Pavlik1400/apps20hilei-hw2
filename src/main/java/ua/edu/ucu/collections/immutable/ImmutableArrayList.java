@@ -5,7 +5,7 @@ public final class ImmutableArrayList implements ImmutableList {
     private final int size;
     private final Object[] container;
 
-    public ImmutableArrayList(){
+    public ImmutableArrayList() {
         this.size = 0;
         container = new Object[0];
     }
@@ -34,13 +34,14 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableList addAll(int index, Object[] c) {
-        if (index < 0 || index > size){
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
         Object[] newContainer = new Object[size + c.length];
         System.arraycopy(container, 0, newContainer, 0, index);
         System.arraycopy(c, 0, newContainer, index, c.length);
-        System.arraycopy(container, index, newContainer, index+c.length, size-index);
+        System.arraycopy(container, index, newContainer,
+                index+c.length, size-index);
         return new ImmutableArrayList(newContainer);
     }
 
@@ -105,8 +106,8 @@ public final class ImmutableArrayList implements ImmutableList {
     /*
     Additional methods
      */
-    private void checkIndex(int index){
-        if (index < 0 || index >= size){
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
     }

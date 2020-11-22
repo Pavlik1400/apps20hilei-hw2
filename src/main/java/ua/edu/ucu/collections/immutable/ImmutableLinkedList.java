@@ -2,12 +2,12 @@ package ua.edu.ucu.collections.immutable;
 import ua.edu.ucu.collections.Node;
 
 
-public final class ImmutableLinkedList implements ImmutableList{
+public final class ImmutableLinkedList implements ImmutableList {
     private final Node head;
     private final Node tail;
     private final int size;
 
-    public ImmutableLinkedList(){
+    public ImmutableLinkedList() {
         head = null;
         tail = null;
         size = 0;
@@ -43,7 +43,7 @@ public final class ImmutableLinkedList implements ImmutableList{
 
     @Override
     public ImmutableList addAll(int index, Object[] c) {
-        if (index < 0 || index > size){
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
         // copy list
@@ -55,7 +55,7 @@ public final class ImmutableLinkedList implements ImmutableList{
         Node current = newHead;
 
         // if index is 0, we have to update newHead
-        if (index == 0){
+        if (index == 0) {
             newHead = convertedHeadTail[0];
             // if size is 0 then we will add extra Node to the end
             if (size != 0) {
@@ -63,7 +63,7 @@ public final class ImmutableLinkedList implements ImmutableList{
             }
         } else {
             // search for node with index <index - 1>
-            for (int idx = 0; idx < index-1; idx++){
+            for (int idx = 0; idx < index-1; idx++) {
                 current = current.next();
             }
             // connect right most node
@@ -78,7 +78,7 @@ public final class ImmutableLinkedList implements ImmutableList{
     public Object get(int index) {
         checkIndex(index);
         Node current = head;
-        for (int idx = 0; idx < index; idx++){
+        for (int idx = 0; idx < index; idx++) {
             current = current.next();
         }
         return current.getValue();
@@ -92,11 +92,11 @@ public final class ImmutableLinkedList implements ImmutableList{
         copyLinkedList(head, newHead, new Node());
         Node current = newHead;
         // go to node that was before on <index> - 1 position
-        for (int idx = 0; idx < index-1; idx++){
+        for (int idx = 0; idx < index-1; idx++) {
             current = current.next();
         }
         // delete node
-        if (index == 0){
+        if (index == 0) {
             newHead = newHead.next();
         } else {
             current.setNext(current.next().next());
@@ -112,7 +112,7 @@ public final class ImmutableLinkedList implements ImmutableList{
         copyLinkedList(head, newHead, new Node());
         Node current = newHead;
         // go to node that was before on <index> position
-        for (int idx = 0; idx < index; idx++){
+        for (int idx = 0; idx < index; idx++) {
             current = current.next();
         }
         // set value
@@ -124,7 +124,7 @@ public final class ImmutableLinkedList implements ImmutableList{
     public int indexOf(Object e) {
         Node current = head;
         int idx = 0;
-        while (current != null){
+        while (current != null) {
             if (current.getValue() == e) {
                 return idx;
             }
@@ -229,7 +229,9 @@ public final class ImmutableLinkedList implements ImmutableList{
     // returns array, where first argument is head, second is tail
     public static Node[] arrToLinkedList(Object[] arr) {
         if (arr.length == 0){
-            throw new NegativeArraySizeException("Passing empty array as argument");
+            throw new NegativeArraySizeException(
+                    "Passing empty array as argument"
+            );
         }
         Node head = new Node();
         Node current = head;
