@@ -19,21 +19,12 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableList add(Object e) {
-        Object[] newContainer = new Object[size + 1];
-        System.arraycopy(container, 0, newContainer, 0, container.length);
-        newContainer[size] = e;
-        return new ImmutableArrayList(newContainer);
+        return addAll(new Object[]{e});
     }
 
     @Override
     public ImmutableList add(int index, Object e) {
-        checkIndex(index);
-
-        Object[] newContainer = new Object[size+1];
-        System.arraycopy(container, 0, newContainer, 0, index);
-        newContainer[index] = e;
-        System.arraycopy(container, index, newContainer, index+1, size-index);
-        return new ImmutableArrayList(newContainer);
+        return addAll(index, new Object[]{e});
     }
 
     @Override
