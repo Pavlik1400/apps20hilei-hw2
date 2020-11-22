@@ -487,4 +487,15 @@ public class ImmutableLinkedListTest {
         assertArrayEquals(list.toArray(), new Object[]{1, 2});
     }
 
+    @Test
+    public void testToString() {
+        // empty
+        ImmutableList list = new ImmutableLinkedList();
+        assertEquals(list.toString(), "[]");
+
+        list = new ImmutableLinkedList(new Object[]{1, 2, 3});
+        assertEquals(list.toString(), "[1, 2, 3]");
+
+    }
+
 }

@@ -251,5 +251,20 @@ public final class ImmutableLinkedList implements ImmutableList {
             throw new IndexOutOfBoundsException();
         }
     }
+
+    public String toString() {
+        StringBuilder res = new StringBuilder("[");
+        Node current = head;
+        if (size > 0) {
+            res.append(current.getValue().toString());
+            current = current.next();
+        }
+        while (current != null) {
+            res.append(", ").append(current.getValue().toString());
+            current = current.next();
+        }
+        return res.append("]").toString();
+
+    }
 }
 

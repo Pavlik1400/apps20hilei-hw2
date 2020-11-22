@@ -370,5 +370,16 @@ public class ImmutableArrayListTest {
         list = new ImmutableArrayList(new Object[]{1, 2, 3});
         assertArrayEquals(list.toArray(), new Object[]{1, 2, 3});
     }
+
+    @Test
+    public void testToString() {
+        // empty
+        ImmutableList list = new ImmutableArrayList();
+        assertEquals(list.toString(), "[]");
+
+        list = new ImmutableArrayList(new Object[]{1, 2, 3});
+        assertEquals(list.toString(), "[1, 2, 3]");
+
+    }
     
 }

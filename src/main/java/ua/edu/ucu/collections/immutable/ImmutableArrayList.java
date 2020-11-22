@@ -103,6 +103,18 @@ public final class ImmutableArrayList implements ImmutableList {
         return arr;
     }
 
+    public String toString() {
+        StringBuilder res = new StringBuilder("[");
+        if (size > 0) {
+            res.append(container[0].toString());
+        }
+        for (int idx = 1; idx < size; idx++) {
+            res.append(", ").append(container[idx].toString());
+        }
+        res.append("]");
+        return res.toString();
+    }
+
     /*
     Additional methods
      */
