@@ -388,13 +388,19 @@ public class ImmutableArrayListTest {
     @Test
     public void testNode() {
         // empty
-        Node node = new Node();
-        assertNull(node.getValue());
+        Node node = new Node(13);
+        assertEquals(node.getValue(), 13);
         assertNull(node.next());
 
         Node anotherNode = new Node(12, node);
         assertEquals(anotherNode.getValue(), 12);
         assertEquals(anotherNode.next(), node);
+
+        anotherNode.setNext(null);
+        assertNull(anotherNode.next());
+
+        anotherNode.setValue(14);
+        assertEquals(anotherNode.getValue(), 14);
     }
 
     @Test(expected = NegativeArraySizeException.class)
