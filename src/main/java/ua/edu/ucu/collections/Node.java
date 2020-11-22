@@ -9,7 +9,7 @@ public final class Node {
     @Setter @Getter
     private Object value = null;
 
-    public Node() {}
+    public Node() { }
     public Node(Object value, Node next) {
         this.next = next;
         this.value = value;

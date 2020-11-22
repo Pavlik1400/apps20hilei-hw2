@@ -192,7 +192,7 @@ public final class ImmutableLinkedList implements ImmutableList {
     */
     // returns size of copied list
     public static int copyLinkedList(Node head, Node newHead, Node newTail) {
-        if (head == null){
+        if (head == null) {
             return 0;
         }
         Node current = null;
@@ -212,7 +212,7 @@ public final class ImmutableLinkedList implements ImmutableList {
             size++;
         }
         // if chain has only one node
-        if (current == null){
+        if (current == null) {
             newHead.setValue(copied.getValue());
             newHead.setNext(null);
             newTail.setValue(copied.getValue());
@@ -228,7 +228,7 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     // returns array, where first argument is head, second is tail
     public static Node[] arrToLinkedList(Object[] arr) {
-        if (arr.length == 0){
+        if (arr.length == 0) {
             throw new NegativeArraySizeException(
                     "Passing empty array as argument"
             );
@@ -236,7 +236,7 @@ public final class ImmutableLinkedList implements ImmutableList {
         Node head = new Node();
         Node current = head;
         Node previous = null;
-        for (Object obj: arr){
+        for (Object obj: arr) {
             current.setValue(obj);
             current.setNext(new Node());
             previous = current;
@@ -246,8 +246,8 @@ public final class ImmutableLinkedList implements ImmutableList {
         return new Node[]{head, previous};
     }
 
-    private void checkIndex(int index){
-        if (index < 0 || index >= size){
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
     }

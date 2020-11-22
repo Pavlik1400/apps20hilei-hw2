@@ -1,6 +1,8 @@
 package ua.edu.ucu.collections.immutable;
 
 import org.junit.Test;
+import ua.edu.ucu.collections.Node;
+
 import static org.junit.Assert.*;
 
 public class ImmutableArrayListTest {
@@ -380,6 +382,26 @@ public class ImmutableArrayListTest {
         list = new ImmutableArrayList(new Object[]{1, 2, 3});
         assertEquals(list.toString(), "[1, 2, 3]");
 
+    }
+
+    // those are just for 100% coverage
+    @Test
+    public void testNode() {
+        // empty
+        Node node = new Node();
+        assertNull(node.getValue());
+        assertNull(node.next());
+
+        Node anotherNode = new Node(12, node);
+        assertEquals(anotherNode.getValue(), 12);
+        assertEquals(anotherNode.next(), node);
+    }
+
+    @Test(expected = NegativeArraySizeException.class)
+    // not null length was tested in previous tests
+    public void testArrToLinkedListNullLength() {
+        Object[] arr = new Object[]{};
+        ImmutableLinkedList.arrToLinkedList(arr);
     }
     
 }
